@@ -13,7 +13,7 @@ Sample Input
 Sample Output
 -999,991
 
-计算两个数相加，结果每隔三位加一个逗号。
+计算两个数相加，结果每隔三位加一个逗号。分结果大于等于0和小于0两种情况。小于0在处理时先去掉“-”，最后再加上。
 
 #include <cstdio>
 #include <iostream>
@@ -72,8 +72,6 @@ int main() {
 			s.insert(0, "-");
 			cout << s;
 		}
-
 	}
-
 	system("pause");
 }
