@@ -1,1 +1,79 @@
+Calculate a + b and output the sum in standard format -- that is, the digits must be separated into groups of three by commas (unless there are less than four digits).
 
+Input
+
+Each input file contains one test case. Each case contains a pair of integers a and b where -1000000 <= a, b <= 1000000. The numbers are separated by a space.
+
+Output
+
+For each test case, you should output the sum of a and b in one line. The sum must be written in the standard format.
+
+Sample Input
+-1000000 9
+Sample Output
+-999,991
+
+计算两个数相加，结果每隔三位加一个逗号。
+
+#include <cstdio>
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+	int a,b,c;
+	string s;
+	cin >> a >> b;
+	c = a + b;
+	if (c >= 0) {
+		s = to_string(c);  //C++11 转string类		
+    if (s.size() < 4) {
+			cout << c;
+		}
+		else {
+			int n,m,i;
+			n = s.size() / 3;
+			m = s.size() % 3;
+			if (m != 0) {
+				s.insert(m, ",");
+				for (i = 1; i < n; ++i) {
+					s.insert(i * 3 + m + 1, ",");
+				}
+			}
+			else {
+				for (i = 1; i < n; ++i) {
+					s.insert(i * 3, ",");
+				}
+			}
+			cout << s;
+		}
+	}
+	else {
+		s = to_string(c);
+		s.erase(0, 1);
+		if (s.size() < 4) {
+			cout << c;
+		}
+		else {
+			int n, m, i;
+			n = s.size() / 3;
+			m = s.size() % 3;
+			if (m != 0) {
+				s.insert(m, ",");
+				for (i = 1; i < n; ++i) {
+					s.insert(i * 3 + m+1, ",");
+				}
+			}
+			else {
+				for (i = 1; i < n; ++i) {
+					s.insert(i * 3, ",");
+				}
+			}
+			s.insert(0, "-");
+			cout << s;
+		}
+
+	}
+
+	system("pause");
+}
