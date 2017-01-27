@@ -1,0 +1,36 @@
+#include <cstdio>
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+
+const int maxn = 30;
+int n, V, maxValue = 0;//物品数量n，最大容量V，最大价值maxValue
+int w[maxn], c[maxn];
+
+void DFS(int index, int sumW, int sumC) {
+	if (index == n) {
+		return;
+	}
+	DFS(index + 1, sumW, sumC);
+	if (sumW + w[index] <= V) {
+		if (sumC + c[index] > maxValue) {
+			maxValue = sumC + c[index];
+		}
+		DFS(index + 1, sumW + w[index], sumC + c[index]);
+	}
+}
+int main() {
+	scanf("%d %d", &n, &V);
+	for (int i = 0; i < n; ++i) {
+		scanf("%d", &w[i]);//输入每件物品的重量
+	}
+	for (int i = 0; i < n; ++i) {
+		scanf("%d", &c[i]);//输入每件物品的价值
+	}
+	DFS(0, 0, 0);
+	printf("%d\n", maxValue);
+	system("pause");
+	return 0;
+}
+// 35122 45213
